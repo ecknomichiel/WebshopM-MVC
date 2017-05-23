@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebshopM_MVC.Models
 {
     public class ShopItem
     {
-        [key]
+        [Key]
         public int ArticleNumber { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }

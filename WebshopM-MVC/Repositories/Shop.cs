@@ -71,6 +71,10 @@ namespace WebshopM_MVC.Repositories
             return memoryItems.Where(item => item.Name.Contains(aName));
         }
         #endregion
+        public IEnumerable<ShopItem> GetAllItemsOnNameAndPrice(double price, string name, bool greaterThan)
+        {
+            return GetAllItemsOnPrice(price, greaterThan).Where(item => item.Name.Contains(name));
+        }
         #region Data access
         public ShopItem Get(int aId)
         {// returns null if id not found
@@ -145,5 +149,7 @@ namespace WebshopM_MVC.Repositories
         #endregion
 
 
+
+        
     }
 }

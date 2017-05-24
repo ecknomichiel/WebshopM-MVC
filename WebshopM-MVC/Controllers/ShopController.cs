@@ -127,21 +127,36 @@ namespace WebshopM_MVC.Controllers
         }
         #endregion
 
-        #region Search
+        #region Search      
         [HttpGet]
         public ActionResult Search()
         {
             return View(shop.GetAllItemsOnPrice(-1, false));
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(string value)
+        public ActionResult Search(double? price, string name, bool greaterThan=false)
         {
             IEnumerable<ShopItem> searchResult;
 
-            searchResult = shop.GetAllItems();
-
+            if (price == null)
+            {
+                //Search on Name
+                searchResult = shop.GetAllItemsOnName(name);
+            }
+            else
+            {
+                if (name == "")
+                {
+                    searchResult = shop.GetAllItemsOnPrice(price.Value, greaterThan);
+                }
+                else
+                {
+                    searchResult = shop.GetAllItemsOnNameAndPrice(price.Value, name, greaterThan);
+                }
+            }
             return View(searchResult);
         }
         #endregion

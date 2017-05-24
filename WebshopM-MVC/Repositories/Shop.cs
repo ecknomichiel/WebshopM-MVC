@@ -40,7 +40,7 @@ namespace WebshopM_MVC.Repositories
                     {
                         //It is possible changes had built up
                         context = ShopContextFactory.CreateShopContext();
-                        Save();
+                        Save(true);
                     }
                     else
                     { //No changes had built up, so free context immediately

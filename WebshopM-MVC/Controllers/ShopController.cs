@@ -10,16 +10,24 @@ using WebshopM_MVC.Repositories;
 
 namespace WebshopM_MVC.Controllers
 {
+             /*         <li>@Html.ActionLink("Home", "Index", "Shop")</li>
+                    <li>@Html.ActionLink("Search", "Search", "Shop")</li>
+                    <li>@Html.ActionLink("About", "About", "Shop")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Shop")</li>
+                    <li>@Html.ActionLink("Settings", "Settings", "Shop")</li> */
     public class ShopController : Controller
     {
         private Shop shop = Shop.Instance;
 
+        #region Index (home)
         // GET: Shop
         public ActionResult Index()
         {
             return View(shop.GetAllItems());
         }
+        #endregion
 
+        #region Details
         // GET: Shop/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,7 +42,9 @@ namespace WebshopM_MVC.Controllers
             }
             return View(shopItem);
         }
+        #endregion
 
+        #region Create (add new product)
         // GET: Shop/Create
         public ActionResult Create()
         {
@@ -47,7 +57,7 @@ namespace WebshopM_MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ArticleNumber,Name,Price,ShelfPosition,Quantity,Description")] ShopItem shopItem)
-        {
+        { //This shares a lot with the edit view, so the views should have a partial view for the item details as well
             if (ModelState.IsValid)
             {
                 shop.Add(shopItem);
@@ -56,7 +66,9 @@ namespace WebshopM_MVC.Controllers
 
             return View(shopItem);
         }
+        #endregion
 
+        #region Edit
         // GET: Shop/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,7 +98,9 @@ namespace WebshopM_MVC.Controllers
             }
             return View(shopItem);
         }
+        #endregion
 
+        #region Delete
         // GET: Shop/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -111,15 +125,45 @@ namespace WebshopM_MVC.Controllers
             shop.Delete(shopItem);
             return RedirectToAction("Index");
         }
+        #endregion
 
-        protected override void Dispose(bool disposing)
+        #region Search
+        [HttpGet]
+        public ActionResult Search()
         {
-            if (disposing)
-            {
-                //Dispose of shop? Save changes to database if cached?
-                shop.Save();
-            }
-            base.Dispose(disposing);
+            return View(shop.GetAllItemsOnPrice(-1, false));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(string value)
+        {
+            IEnumerable<ShopItem> searchResult;
+
+            searchResult = shop.GetAllItems();
+
+            return View(searchResult);
+        }
+        #endregion
+
+        #region Settings
+        public ActionResult Settings()
+        {
+            return View(shop);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Settings(bool? saveOnClose)
+        {
+            //Change the settings here
+            if (saveOnClose == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            shop.SaveOnClose = saveOnClose.Value;
+            return View(shop);
+        }
+
+        #endregion
+
+
     }
 }

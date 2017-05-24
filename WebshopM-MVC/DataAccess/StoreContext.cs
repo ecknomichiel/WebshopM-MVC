@@ -59,7 +59,7 @@ namespace WebshopM_MVC.DataAccess
                 {
                     if (!pi.Equals(mi))
                     {
-                        Entry(pi).State = EntityState.Modified;
+                        Entry(pi).CurrentValues.SetValues(mi);
                     }
                     
                     itemsToAdd.Remove(mi);

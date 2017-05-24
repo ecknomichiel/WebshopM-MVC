@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebshopM_MVC.Models.ShopItem>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@{
+    double? Price = null;
+    string Name = "";
+    bool GreaterThan = false;   
+}
+
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div>
+                <div class="control-label col-md-2">Price</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(price => Price, Price)
+                </div>
+                <div class="col-md-2">
+                    @Html.EditorFor(greaterThan => GreaterThan, GreaterThan)
+                </div>
+                <div class="control-label col-md-2">
+                    Price greater than
+                </div>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-2">Name</div>
+            <div class="col-md-8">
+                @Html.EditorFor(name => Name, Name)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<h2>Results</h2>
+@Html.Partial("_ShopItemList", Model)

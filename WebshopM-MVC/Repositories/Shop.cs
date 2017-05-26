@@ -40,9 +40,12 @@ namespace WebshopM_MVC.Repositories
                         //It is possible changes had built up
                         context = ShopContextFactory.CreateShopContext();
                         Save(true);
+                        //Clear the list in order to make sure that no conflicting data exist.
+                        memoryItems.Clear();
                     }
                     else
-                    { //No changes had built up, so free context immediately
+                    { //Copy data from context
+                        memoryItems.AddRange(context.GetAllItems());
                         context = null;
                     }
                 }
@@ -53,21 +56,35 @@ namespace WebshopM_MVC.Repositories
             // in real-life situations, consider moving this to the IShopContext
             get { return ++maxId; }
         }
+        private IEnumerable<ShopItem> Items
+        {
+            get 
+            {
+                if (context == null)
+                {
+                    return memoryItems;
+                }
+                else
+                {
+                    return context.GetAllItems();
+                }
+            }
+        }
         
         #endregion
         #region Search methods
         public IEnumerable<ShopItem> GetAllItems()
         {
-            return memoryItems;
+            return Items;
         }
         public IEnumerable<ShopItem> GetAllItemsOnPrice(double aPrice, bool greaterThan = false)
         {
-            return memoryItems.Where(item => (greaterThan && item.Price >= aPrice)
+            return Items.Where(item => (greaterThan && item.Price >= aPrice)
                                             || (!greaterThan && item.Price <= aPrice));
         }
         public IEnumerable<ShopItem> GetAllItemsOnName(string aName)
         {
-            return memoryItems.Where(item => item.Name.Contains(aName));
+            return Items.Where(item => item.Name.Contains(aName));
         }
         #endregion
         public IEnumerable<ShopItem> GetAllItemsOnNameAndPrice(double price, string name, bool greaterThan)
@@ -77,7 +94,7 @@ namespace WebshopM_MVC.Repositories
         #region Data access
         public ShopItem Get(int aId)
         {// returns null if id not found
-            return memoryItems.SingleOrDefault(i => i.ArticleNumber == aId);
+            return Items.SingleOrDefault(i => i.ArticleNumber == aId);
         }
         public void Add(ShopItem item)
         {
@@ -110,9 +127,15 @@ namespace WebshopM_MVC.Repositories
         }
         public void Delete(ShopItem item)
         {
-            memoryItems.Remove(item);
-            if (!SaveOnClose)
+            if (SaveOnClose)
+            {
+                memoryItems.Remove(item);
+            }
+            else
+            {
                 context.Delete(item);
+            }
+                
         }
 
         public void Save(bool force = false)
@@ -136,9 +159,9 @@ namespace WebshopM_MVC.Repositories
         #region Construction / Destruction
         private Shop()
         {
-            IShopContext context = ShopContextFactory.CreateShopContext();
-            memoryItems.AddRange(context.GetAllItems());
-            maxId = memoryItems.Max(item => item.ArticleNumber);
+            context = ShopContextFactory.CreateShopContext();
+            //memoryItems.AddRange(context.GetAllItems());
+            maxId = Items.Max(item => item.ArticleNumber);
         }
 
         ~Shop()  // destructor

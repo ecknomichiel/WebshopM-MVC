@@ -26,8 +26,10 @@ namespace WebshopM_MVC.DataAccess
                 //Insert
                 Items.Add(aItem);
             }
-
-            Entry(dbItem).CurrentValues.SetValues(aItem);
+            else
+            {
+                Entry(dbItem).CurrentValues.SetValues(aItem);
+            }
             SaveChanges();
         }
 

@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebshopM_MVC.Models;
 using WebshopM_MVC.Repositories;
 
 namespace WebshopM_MVC.Controllers
 {
-             /*         <li>@Html.ActionLink("Home", "Index", "Shop")</li>
-                    <li>@Html.ActionLink("Search", "Search", "Shop")</li>
-                    <li>@Html.ActionLink("About", "About", "Shop")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Shop")</li>
-                    <li>@Html.ActionLink("Settings", "Settings", "Shop")</li> */
     public class ShopController : Controller
     {
         private Shop shop = Shop.Instance;

@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+.container {
+    background-image: url('/images/vaajma.svg');
+    background-repeat:no-repeat;
+}

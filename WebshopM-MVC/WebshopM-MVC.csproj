@@ -144,6 +144,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\vaajma.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -179,6 +180,8 @@
     <Content Include="Views\Shop\Settings.cshtml" />
     <Content Include="Views\Shop\_ShopItem.cshtml" />
     <Content Include="Views\Shop\_ShopItemList.cshtml" />
+    <Content Include="Views\Shop\_ShopItemListCompact.cshtml" />
+    <Content Include="Views\Shop\_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

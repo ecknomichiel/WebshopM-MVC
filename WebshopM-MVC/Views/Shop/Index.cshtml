@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<WebshopM_MVC.Models.ShopItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Stock management";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@Html.Partial("_ShopItemList", Model)
+@Html.ActionLink("New product", "Create")
+
+@Html.Partial("_ShopItemListCompact")
+
+

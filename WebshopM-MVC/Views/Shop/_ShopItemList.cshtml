@@ -3,22 +3,38 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Product name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Price (SEK)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ShelfPosition)
+            Shelf position
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Quantity)
+            Quantity in stock
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </th>
         <th></th>
     </tr>
+    <tfoot>
+        <tr>
+            
+            <td>
+                Total:
+            </td>
+            <td>
+                @Model.Count()
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+            </td>
+        </tr>
+    </tfoot>
 
 @foreach (var item in Model) {
     <tr>
@@ -44,5 +60,7 @@
         </td>
     </tr>
 }
+    
+
 
 </table>

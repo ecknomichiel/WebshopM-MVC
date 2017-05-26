@@ -26,3 +26,6 @@ textarea {
     background-image: url('/images/vaajma.svg');
     background-repeat:no-repeat;
 }
+.footer {
+    font-weight:bold;
+}

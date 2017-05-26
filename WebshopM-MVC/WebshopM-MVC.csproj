@@ -123,9 +123,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705231146176_Initial.cs" />
-    <Compile Include="Migrations\201705231146176_Initial.Designer.cs">
-      <DependentUpon>201705231146176_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201705261226503_Initial.cs" />
+    <Compile Include="Migrations\201705261226503_Initial.Designer.cs">
+      <DependentUpon>201705261226503_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ShopItem.cs" />
@@ -180,16 +180,16 @@
     <Content Include="Views\Shop\_ShopItemList.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705231146176_Initial.resx">
-      <DependentUpon>201705231146176_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705261226503_Initial.resx">
+      <DependentUpon>201705261226503_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

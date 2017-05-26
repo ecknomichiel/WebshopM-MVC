@@ -11,7 +11,7 @@ namespace WebshopM_MVC.Migrations
                 "dbo.ShopItems",
                 c => new
                     {
-                        ArticleNumber = c.Int(nullable: false, identity: true),
+                        ArticleNumber = c.Int(nullable: false),
                         Name = c.String(),
                         Price = c.Double(nullable: false),
                         ShelfPosition = c.String(),

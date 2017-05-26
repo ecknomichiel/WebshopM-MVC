@@ -1,12 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebshopM_MVC.Models
 {
     public class ShopItem
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ArticleNumber { get; set; }
+
         public string Name { get; set; }
         public double Price { get; set; }
         public string ShelfPosition { get; set; }

@@ -7,6 +7,11 @@
 <h2>@ViewBag.Title</h2>
 @Html.Partial("_Details")
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleNumber }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="btn btn-default">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleNumber })
+    </div>
+    <div class="btn btn-default">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ArticleNumber })
+    </div>
+    
 </p>

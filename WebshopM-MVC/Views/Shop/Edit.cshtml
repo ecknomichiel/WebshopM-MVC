@@ -11,6 +11,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        <hr />
+        <label>Article number: @Model.ArticleNumber</label>  
         @Html.HiddenFor(model => model.ArticleNumber)
 
         @Html.Partial("_ShopItem", Model)
@@ -22,10 +24,6 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

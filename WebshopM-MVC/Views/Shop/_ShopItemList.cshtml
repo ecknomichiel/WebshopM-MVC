@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<WebshopM_MVC.Models.ShopItem>
 
-<table class="table">
+<table class="table productList">
     <tr>
         <th>
             Product name
@@ -21,7 +21,6 @@
     </tr>
     <tfoot class="footer">
         <tr>
-            
             <td>
                 Total:
             </td>
@@ -39,10 +38,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.ActionLink(item.Name, "Details", new { id = item.ArticleNumber })
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @item.Price.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("sv-SE"))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShelfPosition)
@@ -54,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ArticleNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ArticleNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArticleNumber })
+            <div class="btn btn-default">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ArticleNumber })
+            </div>
         </td>
     </tr>
 }

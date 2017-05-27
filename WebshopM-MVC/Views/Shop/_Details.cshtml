@@ -3,7 +3,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ArticleNumber)
+            Article number
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ArticleNumber)
@@ -21,11 +21,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Price)
+            
+            @Model.Price.ToString("C2", System.Globalization.CultureInfo.CreateSpecificCulture("sv-SE"))
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ShelfPosition)
+            Shelf position
         </dt>
 
         <dd>

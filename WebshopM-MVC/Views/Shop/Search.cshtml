@@ -18,29 +18,29 @@
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <div class="form-group">
-            <div>
-                <div class="control-label col-md-2">Price</div>
-                <div class="col-md-4">
+                <div class="control-label col-md-1">Price</div>
+                <div class="col-md-2">
                     @Html.EditorFor(price => Price, Price)
                 </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-4">
+                @Html.EditorFor(greaterThan => GreaterThan, GreaterThan)
+                Price greater than
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="control-label col-md-1">Name</div>
                 <div class="col-md-2">
-                    @Html.EditorFor(greaterThan => GreaterThan, GreaterThan)
-                    Price greater than
-                </div>             
+                    @Html.EditorFor(name => Name, Name)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-1">
+                    <input type="submit" value="Search" class="btn btn-default" />
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="control-label col-md-2">Name</div>
-            <div class="col-md-8">
-                @Html.EditorFor(name => Name, Name)
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-8">
-                <input type="submit" value="Search" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
 }
 
 @{

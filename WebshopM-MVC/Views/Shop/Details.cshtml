@@ -5,13 +5,18 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@Html.Partial("_Details")
-<p>
+
+@if (Model == null)
+{
+    @ViewBag.Message
+}
+else
+{
+    @Html.Partial("_Details")
     <div class="btn btn-default">
         @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleNumber })
     </div>
     <div class="btn btn-default">
         @Html.ActionLink("Delete", "Delete", new { id = Model.ArticleNumber })
     </div>
-    
-</p>
+}

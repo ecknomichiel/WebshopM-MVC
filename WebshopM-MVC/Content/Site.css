@@ -16,9 +16,42 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.footer {
+    font-weight:bold;
+}
+.navbar-inverse{
+    background-color:#003080
+}
+/*Hide description and edit buttons if you would need to scroll for them: smartphone, portrait*/
+@media (max-width:500px) {
+    .productList td:nth-child(6) {
+        visibility: hidden;
+        display:none;
+    }
+
+    .productList td:nth-child(5) {
+        visibility: hidden;
+        display: none;
+    }
+
+    .productList th:nth-child(5) {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/* column 2 is price*/
+.productList td:nth-child(2)
+{
+    min-width:6em;
+    text-align:right;
+    padding-right:1em;
+}
+.productList th:nth-child(2) {
+    min-width: 6em;
+    text-align: right;
+    padding-right: 1em;
+}
+.btn-default{
+    width:8em;
 }

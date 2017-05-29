@@ -1,58 +1,22 @@
 ﻿@model WebshopM_MVC.Models.ShopItem
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Product details";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
-<div>
-    <h4>ShopItem</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShelfPosition)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShelfPosition)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleNumber }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (Model == null)
+{
+    @ViewBag.Message
+}
+else
+{
+    @Html.Partial("_Details")
+    <div class="btn btn-default">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleNumber })
+    </div>
+    <div class="btn btn-default">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ArticleNumber })
+    </div>
+}

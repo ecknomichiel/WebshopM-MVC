@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using WebshopM_MVC.Models;
 using WebshopM_MVC.DataAccess;
 
@@ -40,7 +39,7 @@ namespace WebshopM_MVC.Repositories
                     {
                         //It is possible changes had built up
                         context = ShopContextFactory.CreateShopContext();
-                        Save(true);
+                        Save();
                         //Clear the list in order to make sure that no conflicting data exist.
                         memoryItems.Clear();
                     }
@@ -139,10 +138,10 @@ namespace WebshopM_MVC.Repositories
                 
         }
 
-        public void Save(bool force = false)
+        public void Save()
         {
-            //Ignore this if not forced or SaveOnClose 
-            if (!(force || SaveOnClose))
+            //Ignore this if not SaveOnClose 
+            if (memoryItems == null)
                 return;
 
             IShopContext saveContext;
@@ -167,7 +166,14 @@ namespace WebshopM_MVC.Repositories
 
         ~Shop()  // destructor
         {
-            Save(true);
+            if (context != null)
+            {
+                context = null;
+            }
+            else
+            {
+                Save();
+            }
         }
         #endregion
 

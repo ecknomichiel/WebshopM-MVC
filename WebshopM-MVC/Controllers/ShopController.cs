@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebshopM_MVC.Models;
 using WebshopM_MVC.Repositories;
 
 namespace WebshopM_MVC.Controllers
 {
-             /*         <li>@Html.ActionLink("Home", "Index", "Shop")</li>
-                    <li>@Html.ActionLink("Search", "Search", "Shop")</li>
-                    <li>@Html.ActionLink("About", "About", "Shop")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Shop")</li>
-                    <li>@Html.ActionLink("Settings", "Settings", "Shop")</li> */
     public class ShopController : Controller
     {
         private Shop shop = Shop.Instance;
@@ -29,16 +21,29 @@ namespace WebshopM_MVC.Controllers
 
         #region Details
         // GET: Shop/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string searchArticleNumber)
         {
+            int artNr = 0;
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (searchArticleNumber == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                else if (int.TryParse(searchArticleNumber, out artNr))
+                {
+                    id = artNr;
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
             }
+
             ShopItem shopItem = shop.Get(id.Value);
             if (shopItem == null)
             {
-                return HttpNotFound();
+                ViewBag.Message = "The article number you entered could not be found.";
             }
             return View(shopItem);
         }

@@ -3,31 +3,45 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Vaajma local foods - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="header-container container-fluid">
             <div class="navbar-header">
+                <a href="/" class="navbar-left"><img src="~/Images/vaajma.svg" alt="Vaajma local foods" height="50" /></a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Kortreist mat i Vaajma", "Index", "Shop", new { area = "" }, new { @class = "navbar-brand" })
+                
             </div>
+            
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Shop")</li>
                     <li>@Html.ActionLink("Search", "Search", "Shop")</li>
                     <li>@Html.ActionLink("Settings", "Settings", "Shop")</li>
+                    <li>
+                        <form class="navbar-form" action="~/Shop/Details">
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="searchArticleNumber" placeholder="Search on articlenumber" 
+                                       data-val="true" data-val-number="Articlenumber must be a number." data-val-required="Enter an articlenumber if you want to do a search.">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
+            
+                
+            
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>

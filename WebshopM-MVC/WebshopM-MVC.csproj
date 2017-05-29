@@ -134,6 +134,10 @@
     <Compile Include="Repositories\Shop.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\WebshopM-MVC.mdf" />
+    <Content Include="App_Data\WebshopM-MVC_log.ldf">
+      <DependentUpon>WebshopM-MVC.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -191,6 +195,7 @@
       <DependentUpon>201705261226503_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

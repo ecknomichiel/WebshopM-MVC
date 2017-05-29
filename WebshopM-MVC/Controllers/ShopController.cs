@@ -22,15 +22,11 @@ namespace WebshopM_MVC.Controllers
         #region Details
         // GET: Shop/Details/5
         public ActionResult Details(int? id, string searchArticleNumber)
-        {
+        { //Takes id or , if id is missing, searchArticleNumber
             int artNr = 0;
             if (id == null)
             {
-                if (searchArticleNumber == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                else if (int.TryParse(searchArticleNumber, out artNr))
+                if (int.TryParse(searchArticleNumber, out artNr))
                 {
                     id = artNr;
                 }

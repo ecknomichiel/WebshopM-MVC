@@ -165,7 +165,7 @@ namespace WebshopM_MVC.Repositories
         }
 
         ~Shop()  // destructor
-        {
+        { // This does not work very well, as the dbContext can be destroyed any time while using it when shutting down.
             if (context != null)
             {
                 context = null;

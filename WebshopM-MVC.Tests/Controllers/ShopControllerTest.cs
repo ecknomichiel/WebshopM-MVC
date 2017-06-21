@@ -10,7 +10,7 @@ using WebshopM_MVC.Controllers;
 namespace WebshopM_MVC.Tests.Controllers
 {
     [TestClass]
-    public class HomeControllerTest
+    public class ShopControllerTest
     {
         [TestMethod]
         public void Index()

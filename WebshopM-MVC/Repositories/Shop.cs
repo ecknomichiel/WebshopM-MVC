@@ -84,12 +84,12 @@ namespace WebshopM_MVC.Repositories
         }
         public IEnumerable<ShopItem> GetAllItemsOnName(string aName)
         {
-            return Items.Where(item => item.Name.Contains(aName));
+            return Items.Where(item => item.Name.ToLower().Contains(aName.ToLower()));
         }
         #endregion
         public IEnumerable<ShopItem> GetAllItemsOnNameAndPrice(double price, string name, bool greaterThan)
         {
-            return GetAllItemsOnPrice(price, greaterThan).Where(item => item.Name.Contains(name));
+            return GetAllItemsOnPrice(price, greaterThan).Where(item => item.Name.ToLower().Contains(name.ToLower()));
         }
         #region Data access
         public ShopItem Get(int aId)

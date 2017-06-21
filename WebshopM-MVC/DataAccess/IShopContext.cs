@@ -14,11 +14,23 @@ namespace WebshopM_MVC.DataAccess
         IEnumerable<ShopItem> GetAllItems();
     }
 
+    interface ICreateableShopContext
+    {
+        public IShopContext Create();
+    }
+
     static class ShopContextFactory
     {
+        private static List<ICreateableShopContext> contexts = new List<ICreateableShopContext>(){new StoreContext()};
         public static IShopContext CreateShopContext()
+        { //return a new instance of the last registered context type.
+            return contexts[contexts.Count - 1].Create();
+        }
+
+        public static void RegisterContext(ICreateableShopContext context)
         {
-            return new StoreContext();
+            contexts.Add(context);
         }
     }
+
 }

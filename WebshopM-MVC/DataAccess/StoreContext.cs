@@ -6,7 +6,7 @@ using WebshopM_MVC.Models;
 /* This is like a datamodule for the store */
 namespace WebshopM_MVC.DataAccess
 {
-    public class StoreContext: DbContext, IShopContext
+    public class StoreContext: DbContext, IShopContext, ICreateableShopContext
     {
         //Items is made public for speeding up seeding. In actual use, it is accessed through 
         //the IShopContext interface only
@@ -80,5 +80,10 @@ namespace WebshopM_MVC.DataAccess
         }
         #endregion
 
+
+        public IShopContext Create()
+        {
+            return new StoreContext();
+        }
     }
 }
